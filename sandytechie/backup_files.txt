@@ -1,0 +1,8 @@
+apache.log
+mysql.log
+nagios.log
+ansible.log
+chef.log
+
+
+
