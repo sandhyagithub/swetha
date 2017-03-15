@@ -1,0 +1,101 @@
+1)copy - Copies files to remote locations.
+
+# Example from Ansible Playbooks
+- copy: src=/srv/myfiles/foo.conf dest=/etc/foo.conf owner=foo group=foo mode=06
+
+2)debug - This module prints statements during execution and can be useful for
+  debugging variables or expressions without necessarily halting the
+  playbook. Useful for debugging together with the 'when:' directive.
+
+# Example that prints the loopback address and gateway for each host
+- debug: msg="System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }
+
+3)file -   Sets attributes of files, symlinks, and directories, or removes
+  files/symlinks/directories. Many other modules support the same
+  options as the [file] module - including [copy], [template], and
+  [assemble].
+
+# touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+- file: path=/etc/foo.conf state=touch mode="u=rw,g=r,o=r"
+
+4)hostname - Manage hostname
+
+5)include - include a play or task list.
+
+6)ping - Try to connect to host, verify a usable python and return pong on success.
+
+7)service - Manage services.controls services on remote hosts. 
+
+8)wait_for - Waits for a condition before continuing./ You can wait for a set amount of time `timeout', this is the default
+  if nothing is specified. 
+
+# wait 300 seconds for port 8000 to become open on the host, don't start checkin
+- wait_for: port=8000 delay=10
+
+9)register- to store the output of any command
+
+
+10)yum - Manages packages with the yum package manager
+
+11)template - copy the file from source to destination along the variable changes by jinja tool filtering
+
+# Example from Ansible Playbooks
+- template: src=/mytemplates/foo.j2 dest=/etc/file.conf owner=bin group=wheel mode=0644
+
+
+12)shell - Execute commands in node./  The [shell] module takes the command name followed by a list of
+  space-delimited arguments. It is almost exactly like the [command]
+  module but runs the command through a shell (`/bin/sh') on the
+  remote node.
+
+# Change the working directory to somedir/ before executing the command.
+- shell: somescript.sh >> somelog.txt chdir=somedir/
+
+13)pip- recommended tool to install a python package. / Manage Python library dependencies. To use this module, one of the
+  following keys is required: `name' or `requirements'.
+
+# Install (Bottle) python package.
+- pip: name=bottle
+
+14)command - Executes a command on a remote node. / The [command] module takes the command name followed by a list of
+  space-delimited arguments. The given command will be executed on all
+  selected nodes. It will not be processed through the shell, so
+  variables like `$HOME' and operations like `"<"', `">"', `"|"',
+  `";"' and `"&"' will not work (use the [shell] module if you need
+  these features).
+
+# Example from Ansible Playbooks.
+- command: /sbin/shutdown -t now
+
+
+15)apt - manages apt-packages such as for ubuntu/debian
+
+example:# Install the package "foo"
+- apt: name=foo state=present
+
+16)authorized_key - adds or removes an SSH authorized key for particular user accounts
+
+# Using github url as key source
+- authorized_key: user=charlie key=https://github.com/charlie.key
+
+17)mysql_db - Add or remove MySQL databases from a remote host.
+
+example:# Create a new database with name 'bobdata'
+- mysql_db: name=bobdata state=present
+
+18)mysql_user - Adds or removes a user from a MySQL database.
+
+example:# Create database user with name 'bob' and password '12345' with all database pr
+- mysql_user: name=bob password=12345 priv=*.*:ALL state=present
+
+19)apache2_module - Enables or disables a specified module of the Apache2 webserver.
+
+# enables the Apache2 module "wsgi"
+- apache2_module: state=present name=wsgi
+
+# disables the Apache2 module "wsgi"
+- apache2_module: state=absent name=wsgi
+
+20)lineinfile - This is primarily useful when you want to change a single line in a file only. See the replace module if you want to change multiple, similar lines or check blockinfile if you want to insert/update/remove a block of lines in a file. For other cases, see the copy or template modules.
+
+
