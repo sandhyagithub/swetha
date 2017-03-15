@@ -1,0 +1,27 @@
+
+The answer is yes, but its not a one step install.
+
+Before I show you the trick… Listen to me ramble for a sec.
+
+Well.. I’m not sure why it hasnt become part of the standard yum libraries, and I’m still learning the ropes in that area, but it appears to me that the maven community is really like a mini-feodra packaging community, with its own infrastructure and idioms for packaging artifacts (maven + poms), which is part of a larger community which focuses on distributing tarballs (apache). So all this probably leads to a little bit of a distraction from the yum world, since maven users want poms, and apache users want tarballs, and yum/rpm/apt is still are still largely used by administrators (who most likely are not java developers).
+
+Anyways.. inspite of these complications… you  can still install maven in in 2 steps.
+
+wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+
+yum install apache-maven
+
+Yay ! But your not done yet. 
+
+Maven is installed to /usr/share/apache-maven/…
+
+so update your symlinks etc accordingly if you want to use the sleek “mvn” invocation that we all know and love. 
+
+
+
+INSTALLING JENKINS ON CENTOS
+
+yum install java-1.6.0-openjdk
+	
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
