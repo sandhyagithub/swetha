@@ -98,4 +98,5 @@ example:# Create database user with name 'bob' and password '12345' with all dat
 
 20)lineinfile - This is primarily useful when you want to change a single line in a file only. See the replace module if you want to change multiple, similar lines or check blockinfile if you want to insert/update/remove a block of lines in a file. For other cases, see the copy or template modules.
 
+21)include - Includes a file with a list of plays or tasks to be executed in the current playbook.
 
